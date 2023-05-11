@@ -5,11 +5,11 @@ const PastriesSchema = new Schema({
     description: { type: String, required: true },
     category: { type: String, required: true },
     price: { type: Number, required: true },
-    quantity: { type: Number, required: true },
-    url: { type: String, required: true },
+    quantity: { type: Number, required: true }
+    
 })
 
 PastriesSchema.virtual("url").get(() =>  {
     return `/fruit/${this._id}`})
 
-const Pastries = mongoose.model("Pastries", PastriesSchema)
+module.exports = mongoose.model("Pastries", PastriesSchema)

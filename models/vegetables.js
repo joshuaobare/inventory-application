@@ -5,11 +5,11 @@ const VegSchema = new Schema({
     description: { type: String, required: true },
     category: { type: String, required: true },
     price: { type: Number, required: true },
-    quantity: { type: Number, required: true },
-    url: { type: String, required: true },
+    quantity: { type: Number, required: true }
+    
 })
 
 VegSchema.virtual("url").get(() =>  {
     return `/fruit/${this._id}`})
 
-const Veg = mongoose.model("Veg", VegSchema)
+module.exports = mongoose.model("Veg", VegSchema)
