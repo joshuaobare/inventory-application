@@ -6,7 +6,10 @@ const FruitSchema = new Schema({
     category: { type: String, required: true },
     price: { type: Number, required: true },
     quantity: { type: Number, required: true },
-    url: { type: String, required: true },
+    
 })
 
-const Fruit = mongoose.model("Fruit", FruitSchema)
+FruitSchema.virtual("url").get(() =>  {
+    return `/fruit/${this._id}`})
+
+module.exports = mongoose.model("Fruit", FruitSchema)

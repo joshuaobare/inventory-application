@@ -5,8 +5,11 @@ const DryFoodsSchema = new Schema({
     description: { type: String, required: true },
     category: { type: String, required: true },
     price: { type: Number, required: true },
-    quantity: { type: Number, required: true },
-    url: { type: String, required: true },
+    quantity: { type: Number, required: true }
+    
 })
 
-const DryFoods = mongoose.model("DryFoods", DryFoodsSchema)
+DryFoodsSchema.virtual("url").get(() =>  {
+    return `/fruit/${this._id}`})
+
+module.exports = mongoose.model("DryFoods", DryFoodsSchema)

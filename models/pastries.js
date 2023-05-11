@@ -9,4 +9,7 @@ const PastriesSchema = new Schema({
     url: { type: String, required: true },
 })
 
+PastriesSchema.virtual("url").get(() =>  {
+    return `/fruit/${this._id}`})
+
 const Pastries = mongoose.model("Pastries", PastriesSchema)
