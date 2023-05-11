@@ -1,6 +1,10 @@
 const Fruit = require("../models/fruit")
 const asyncHandler = require("express-async-handler")
 
+
+exports.index = asyncHandler(async(req, res, next) => {
+    res.send("Home Page")
+})
 // Display list of all fruits.
 exports.fruit_list = asyncHandler(async (req, res, next) => {
   res.send("NOT IMPLEMENTED: fruit list");

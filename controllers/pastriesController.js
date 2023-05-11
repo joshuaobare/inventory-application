@@ -1,6 +1,10 @@
 const Pastries = require("../models/pastries")
 const asyncHandler = require("express-async-handler")
 
+exports.index = asyncHandler(async(req, res, next) => {
+    res.send("Home Page")
+})
+
 // Display list of all pastries.
 exports.pastry_list = asyncHandler(async (req, res, next) => {
   res.send("NOT IMPLEMENTED: pastry list");

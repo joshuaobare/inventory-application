@@ -1,6 +1,11 @@
 const Beverages = require("../models/beverages")
 const asyncHandler = require("express-async-handler")
 
+exports.index = asyncHandler(async(req, res, next) => {
+    res.send("Home Page")
+})
+
+
 // Display list of all beverages.
 exports.beverage_list = asyncHandler(async (req, res, next) => {
   res.send("NOT IMPLEMENTED: beverage list");

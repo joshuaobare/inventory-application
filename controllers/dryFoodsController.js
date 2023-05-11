@@ -1,6 +1,10 @@
 const DryFoods = require("../models/dryFoods")
 const asyncHandler = require("express-async-handler")
 
+exports.index = asyncHandler(async(req, res, next) => {
+    res.send("Home Page")
+})
+
 // Display list of all dryFoods.
 exports.dryFood_list = asyncHandler(async (req, res, next) => {
   res.send("NOT IMPLEMENTED: dryFood list");

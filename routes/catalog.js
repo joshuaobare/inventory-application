@@ -40,98 +40,98 @@ router.get("/fruits", fruit_controller.fruit_list);
 /// pastries ROUTES ///
 
 // GET request for creating pastries. NOTE This must come before route for id (i.e. display pastries).
-router.get("/pastries/create", pastries_controller.pastries_create_get);
+router.get("/pastries/create", pastries_controller.pastry_create_get);
 
 // POST request for creating pastries.
-router.post("/pastries/create", pastries_controller.pastries_create_post);
+router.post("/pastries/create", pastries_controller.pastry_create_post);
 
 // GET request to delete pastries.
-router.get("/pastries/:id/delete", pastries_controller.pastries_delete_get);
+router.get("/pastries/:id/delete", pastries_controller.pastry_delete_get);
 
 // POST request to delete pastries.
-router.post("/pastries/:id/delete", pastries_controller.pastries_delete_post);
+router.post("/pastries/:id/delete", pastries_controller.pastry_delete_post);
 
 // GET request to update pastries.
-router.get("/pastries/:id/update", pastries_controller.pastries_update_get);
+router.get("/pastries/:id/update", pastries_controller.pastry_update_get);
 
 // POST request to update pastries.
-router.post("/pastries/:id/update", pastries_controller.pastries_update_post);
+router.post("/pastries/:id/update", pastries_controller.pastry_update_post);
 
 // GET request for one pastries.
-router.get("/pastries/:id", pastries_controller.pastries_detail);
+router.get("/pastries/:id", pastries_controller.pastry_detail);
 
 // GET request for list of all pastriess.
-router.get("/pastries", pastries_controller.pastries_list);
+router.get("/pastries", pastries_controller.pastry_list);
 
 /// dryFoods ROUTES ///
 
 // GET request for creating dryFoods. NOTE This must come before route that displays dryFoods (uses id).
-router.get("/dryFoods/create", dryFoods_controller.dryFoods_create_get);
+router.get("/dryFoods/create", dryFoods_controller.dryFood_create_get);
 
 //POST request for creating dryFoods.
-router.post("/dryFoods/create", dryFoods_controller.dryFoods_create_post);
+router.post("/dryFoods/create", dryFoods_controller.dryFood_create_post);
 
 // GET request to delete dryFoods.
-router.get("/dryFoods/:id/delete", dryFoods_controller.dryFoods_delete_get);
+router.get("/dryFoods/:id/delete", dryFoods_controller.dryFood_delete_get);
 
 // POST request to delete dryFoods.
-router.post("/dryFoods/:id/delete", dryFoods_controller.dryFoods_delete_post);
+router.post("/dryFoods/:id/delete", dryFoods_controller.dryFood_delete_post);
 
 // GET request to update dryFoods.
-router.get("/dryFoods/:id/update", dryFoods_controller.dryFoods_update_get);
+router.get("/dryFoods/:id/update", dryFoods_controller.dryFood_update_get);
 
 // POST request to update dryFoods.
-router.post("/dryFoods/:id/update", dryFoods_controller.dryFoods_update_post);
+router.post("/dryFoods/:id/update", dryFoods_controller.dryFood_update_post);
 
 // GET request for one dryFoods.
-router.get("/dryFoods/:id", dryFoods_controller.dryFoods_detail);
+router.get("/dryFoods/:id", dryFoods_controller.dryFood_detail);
 
 // GET request for list of all dryFoods.
-router.get("/dryFoods", dryFoods_controller.dryFoods_list);
+router.get("/dryFoods", dryFoods_controller.dryFood_list);
 
 /// vegetables ROUTES ///
 
 // GET request for creating vegetables. NOTE This must come before route that displays vegetables (uses id).
 router.get(
   "/vegetables/create",
-  vegetables_controller.vegetables_create_get
+  vegetables_controller.vegetable_create_get
 );
 
 // POST request for creating vegetables.
 router.post(
   "/vegetables/create",
-  vegetables_controller.vegetables_create_post
+  vegetables_controller.vegetable_create_post
 );
 
 // GET request to delete vegetables.
 router.get(
   "/vegetables/:id/delete",
-  vegetables_controller.vegetables_delete_get
+  vegetables_controller.vegetable_delete_get
 );
 
 // POST request to delete vegetables.
 router.post(
   "/vegetables/:id/delete",
-  vegetables_controller.vegetables_delete_post
+  vegetables_controller.vegetable_delete_post
 );
 
 // GET request to update vegetables.
 router.get(
   "/vegetables/:id/update",
-  vegetables_controller.vegetables_update_get
+  vegetables_controller.vegetable_update_get
 );
 
 // POST request to update vegetables.
 router.post(
   "/vegetables/:id/update",
-  vegetables_controller.vegetables_update_post
+  vegetables_controller.vegetable_update_post
 );
 
 // GET request for one vegetables.
-router.get("/vegetables/:id", vegetables_controller.vegetables_detail);
+router.get("/vegetables/:id", vegetables_controller.vegetable_detail);
 
 // GET request for list of all vegetables.
-router.get("/vegetables", vegetables_controller.vegetables_list);
+router.get("/vegetables", vegetables_controller.vegetable_list);
 
 /// BEVERAGES ROUTES ///
 

@@ -1,6 +1,10 @@
 const Veg = require("../models/vegetables")
 const asyncHandler = require("express-async-handler")
 
+exports.index = asyncHandler(async(req, res, next) => {
+    res.send("Home Page")
+})
+
 // Display list of all vegetables.
 exports.vegetable_list = asyncHandler(async (req, res, next) => {
   res.send("NOT IMPLEMENTED: vegetable list");
