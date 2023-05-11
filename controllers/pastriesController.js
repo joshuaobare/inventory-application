@@ -7,7 +7,11 @@ exports.index = asyncHandler(async(req, res, next) => {
 
 // Display list of all pastries.
 exports.pastry_list = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: pastry list");
+  const allPastries = await Pastries.find({})
+  .sort({name:1})
+  .exec()
+
+  res.render('pastries' , {title:"Pastries", pastry_list: allPastries})
 });
 
 // Display detail page for a specific pastry.

@@ -7,7 +7,8 @@ exports.index = asyncHandler(async (req, res, next) => {
 // Display list of all fruits.
 exports.fruit_list = asyncHandler(async (req, res, next) => {
     const allFruits = await Fruit.find({})
-        .sort({title:1})
+        .sort({name:1})
+        .exec()
         
   res.render("fruits", {title: "Fruits", fruit_list:allFruits})
 });
