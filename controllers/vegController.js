@@ -7,7 +7,11 @@ exports.index = asyncHandler(async(req, res, next) => {
 
 // Display list of all vegetables.
 exports.vegetable_list = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: vegetable list");
+    const allVegetables = await Veg.find({})
+    .sort({name:1})
+    .exec()
+  
+    res.render("category" , {title:"Vegetables", data_array:allVegetables, item:"vegetables"})
 });
 
 // Display detail page for a specific vegetable.

@@ -7,7 +7,11 @@ exports.index = asyncHandler(async(req, res, next) => {
 
 // Display list of all dryFoods.
 exports.dryFood_list = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: dryFood list");
+  const allDryFoods = await DryFoods.find({})
+  .sort({name:1})
+  .exec()
+
+  res.render("category" , {title:"Dry Foods", data_array:allDryFoods, item:"dry foods"})
 });
 
 // Display detail page for a specific dryFood.

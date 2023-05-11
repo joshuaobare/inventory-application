@@ -11,7 +11,7 @@ exports.pastry_list = asyncHandler(async (req, res, next) => {
   .sort({name:1})
   .exec()
 
-  res.render('pastries' , {title:"Pastries", pastry_list: allPastries})
+  res.render('category' , {title:"Pastries", data_array: allPastries , item:"pastries"})
 });
 
 // Display detail page for a specific pastry.

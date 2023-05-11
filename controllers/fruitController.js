@@ -10,7 +10,7 @@ exports.fruit_list = asyncHandler(async (req, res, next) => {
         .sort({name:1})
         .exec()
         
-  res.render("fruits", {title: "Fruits", fruit_list:allFruits})
+  res.render("category", {title: "Fruits", data_array:allFruits, item:"fruits"})
 });
 
 // Display detail page for a specific fruit.

@@ -8,7 +8,11 @@ exports.index = asyncHandler(async(req, res, next) => {
 
 // Display list of all beverages.
 exports.beverage_list = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: beverage list");
+  const allBeverages = await Beverages.find({})
+  .sort({title:1})
+  .exec()
+
+  res.render("category", {title: "Beverages", data_array:allBeverages, item: "beverages"})
 });
 
 // Display detail page for a specific beverage.

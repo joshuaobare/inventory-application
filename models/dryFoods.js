@@ -9,7 +9,7 @@ const DryFoodsSchema = new Schema({
     
 })
 
-DryFoodsSchema.virtual("url").get(() =>  {
-    return `/fruit/${this._id}`})
+DryFoodsSchema.virtual("url").get(function() {
+    return `/dryFoods/${this._id}`})
 
 module.exports = mongoose.model("DryFoods", DryFoodsSchema)

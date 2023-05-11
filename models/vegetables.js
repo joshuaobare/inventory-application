@@ -9,7 +9,7 @@ const VegSchema = new Schema({
     
 })
 
-VegSchema.virtual("url").get(() =>  {
-    return `/fruit/${this._id}`})
+VegSchema.virtual("url").get(function() {
+    return `/vegetables/${this._id}`})
 
 module.exports = mongoose.model("Veg", VegSchema)

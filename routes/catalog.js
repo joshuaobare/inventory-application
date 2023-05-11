@@ -17,25 +17,25 @@ router.get("/", main_controller.index);
 /// fruit ROUTES ///
 
 // GET request for creating a fruit. NOTE This must come before routes that display fruit (uses id).
-router.get("/fruit/create", fruit_controller.fruit_create_get);
+router.get("/fruits/create", fruit_controller.fruit_create_get);
 
 // POST request for creating fruit.
-router.post("/fruit/create", fruit_controller.fruit_create_post);
+router.post("/fruits/create", fruit_controller.fruit_create_post);
 
 // GET request to delete fruit.
-router.get("/fruit/:id/delete", fruit_controller.fruit_delete_get);
+router.get("/fruits/:id/delete", fruit_controller.fruit_delete_get);
 
 // POST request to delete fruit.
-router.post("/fruit/:id/delete", fruit_controller.fruit_delete_post);
+router.post("/fruits/:id/delete", fruit_controller.fruit_delete_post);
 
 // GET request to update fruit.
-router.get("/fruit/:id/update", fruit_controller.fruit_update_get);
+router.get("/fruits/:id/update", fruit_controller.fruit_update_get);
 
 // POST request to update fruit.
-router.post("/fruit/:id/update", fruit_controller.fruit_update_post);
+router.post("/fruits/:id/update", fruit_controller.fruit_update_post);
 
 // GET request for one fruit.
-router.get("/fruit/:id", fruit_controller.fruit_detail);
+router.get("/fruits/:id", fruit_controller.fruit_detail);
 
 // GET request for list of all fruit items.
 router.get("/fruits", fruit_controller.fruit_list);

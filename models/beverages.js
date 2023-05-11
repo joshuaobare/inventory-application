@@ -9,7 +9,7 @@ const BeverageSchema = new Schema({
     
 })
 
-BeverageSchema.virtual("url").get(() =>  {
-    return `/fruit/${this._id}`})
+BeverageSchema.virtual("url").get(function() {
+    return `/beverages/${this._id}`})
 
 module.exports = mongoose.model("Beverage", BeverageSchema)
