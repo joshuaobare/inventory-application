@@ -2,16 +2,19 @@ const express = require("express");
 const router = express.Router();
 
 // Require controller modules.
+const main_controller = require("../controllers/mainController");
 const fruit_controller = require("../controllers/fruitController");
 const pastries_controller = require("../controllers/pastriesController");
 const dryFoods_controller = require("../controllers/dryFoodsController");
 const vegetables_controller = require("../controllers/vegController");
 const beverage_controller = require("../controllers/beverageController");
 
-/// fruit ROUTES ///
+
 
 // GET catalog home page.
-router.get("/", fruit_controller.index);
+router.get("/", main_controller.index);
+
+/// fruit ROUTES ///
 
 // GET request for creating a fruit. NOTE This must come before routes that display fruit (uses id).
 router.get("/fruit/create", fruit_controller.fruit_create_get);

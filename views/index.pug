@@ -2,4 +2,15 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  p Welcome to #[em Inventory Application], a very basic Express website developed to manage and view inventory
+
+  h1 Dynamic content 
+
+  p Your inventory is populated as follows: 
+
+  ul  
+    li #[strong Fruits:] !{fruit_count}
+    li #[strong Beverages:] !{beverage_count}
+    li #[strong Vegetables:] !{veg_count}
+    li #[strong Dry Foods:] !{dryFood_count}
+    li #[strong Pastries:] !{pastry_count}

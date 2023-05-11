@@ -1,13 +1,15 @@
-const Fruit = require("../models/fruit")
-const asyncHandler = require("express-async-handler")
+const Fruit = require("../models/fruit");
+const asyncHandler = require("express-async-handler");
 
-
-exports.index = asyncHandler(async(req, res, next) => {
-    res.send("Home Page")
-})
+exports.index = asyncHandler(async (req, res, next) => {
+  res.send("Home Page");
+});
 // Display list of all fruits.
 exports.fruit_list = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: fruit list");
+    const allFruits = await Fruit.find({})
+        .sort({title:1})
+        
+  res.render("fruits", {title: "Fruits", fruit_list:allFruits})
 });
 
 // Display detail page for a specific fruit.
