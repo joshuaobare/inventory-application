@@ -1,6 +1,6 @@
 const Fruit = require("../models/fruit");
 const asyncHandler = require("express-async-handler");
-const [body, validationResult] = require("express-validator");
+const {body, validationResult} = require("express-validator");
 
 exports.index = asyncHandler(async (req, res, next) => {
   res.send("Home Page");
@@ -38,25 +38,25 @@ exports.fruit_create_get = asyncHandler(async (req, res, next) => {
 });
 
 // Handle fruit create on POST.
-exports.fruit_create_post = asyncHandler(async (req, res, next) => {
+exports.fruit_create_post = [
   
     body("name")
     .trim()
     .isLength({min:1})
     .escape()
-    .withMessage("Name must be specified")
+    .withMessage("Name must be specified"),
     
     body("description")
     .trim()
     .isLength({min:1})
     .escape()
-    .withMessage("Description must be specified")
+    .withMessage("Description must be specified"),
     
     body("category")
     .trim()
     .isLength({min:1})
     .escape()
-    .withMessage("Category must be specified")
+    .withMessage("Category must be specified"),
     
     body("price")
     .trim()
@@ -64,7 +64,7 @@ exports.fruit_create_post = asyncHandler(async (req, res, next) => {
     .escape()
     .withMessage("Price must be specified")
     .isNumeric()
-    .withMessage("Price has non-numeric characters")
+    .withMessage("Price has non-numeric characters"),
 
     body("quantity")
     .trim()
@@ -72,7 +72,7 @@ exports.fruit_create_post = asyncHandler(async (req, res, next) => {
     .escape()
     .withMessage("Quantity must be specified")
     .isNumeric()
-    .withMessage("Quantity has non-numeric characters")
+    .withMessage("Quantity has non-numeric characters"),
 
 
     asyncHandler(async(req,res,next) => {
@@ -97,10 +97,7 @@ exports.fruit_create_post = asyncHandler(async (req, res, next) => {
             await fruit.save()
             res.redirect(fruit.url)
         }
-    })
-
-
-});
+    })];
 
 // Display fruit delete form on GET.
 exports.fruit_delete_get = asyncHandler(async (req, res, next) => {
