@@ -15,7 +15,21 @@ exports.fruit_list = asyncHandler(async (req, res, next) => {
 
 // Display detail page for a specific fruit.
 exports.fruit_detail = asyncHandler(async (req, res, next) => {
-  res.send(`NOT IMPLEMENTED: fruit detail: ${req.params.id}`);
+  
+    const fruit = await Fruit.findById(req.params.id).exec()
+
+    if (fruit === null){
+        const err = new Error("Fruit not found")
+        err.status = 404
+        return next(err)
+    }
+    
+    res.render("item_detail", {
+        product: fruit,
+        item: "Fruit"
+
+    })
+
 });
 
 // Display fruit create form on GET.

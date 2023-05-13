@@ -10,6 +10,6 @@ const FruitSchema = new Schema({
 })
 
 FruitSchema.virtual("url").get(function() {
-    return `/fruits/${this._id}`})
+    return `/catalog/fruits/${this._id}`})
 
 module.exports = mongoose.model("Fruit", FruitSchema)

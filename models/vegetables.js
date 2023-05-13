@@ -10,6 +10,6 @@ const VegSchema = new Schema({
 })
 
 VegSchema.virtual("url").get(function() {
-    return `/vegetables/${this._id}`})
+    return `/catalog/vegetables/${this._id}`})
 
 module.exports = mongoose.model("Veg", VegSchema)

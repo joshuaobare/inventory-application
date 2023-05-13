@@ -10,6 +10,6 @@ const PastriesSchema = new Schema({
 })
 
 PastriesSchema.virtual("url").get(function() {
-    return `/pastries/${this._id}`})
+    return `/catalog/pastries/${this._id}`})
 
 module.exports = mongoose.model("Pastries", PastriesSchema)
