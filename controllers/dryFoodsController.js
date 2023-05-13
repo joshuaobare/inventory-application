@@ -16,7 +16,21 @@ exports.dryFood_list = asyncHandler(async (req, res, next) => {
 
 // Display detail page for a specific dryFood.
 exports.dryFood_detail = asyncHandler(async (req, res, next) => {
-  res.send(`NOT IMPLEMENTED: dryFood detail: ${req.params.id}`);
+ 
+    const dryFood = await DryFoods.findById(req.params.id).exec()
+    
+    if (dryFood === null){
+        const err = new Error("Dry food not found")
+        err.status = 404
+        return next(err)
+    }
+    
+    res.render("item_detail", {
+        product: dryFood,
+        item: "Dry Food"
+
+    })
+
 });
 
 // Display dryFood create form on GET.

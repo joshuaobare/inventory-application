@@ -16,7 +16,20 @@ exports.pastry_list = asyncHandler(async (req, res, next) => {
 
 // Display detail page for a specific pastry.
 exports.pastry_detail = asyncHandler(async (req, res, next) => {
-  res.send(`NOT IMPLEMENTED: pastry detail: ${req.params.id}`);
+  
+    const pastry = await Pastries.findById(req.params.id).exec()
+    if (pastry === null){
+        const err = new Error("Pastry not found")
+        err.status = 404
+        return next(err)
+    }
+    
+    res.render("item_detail", {
+        product: pastry,
+        item: "Pastry"
+
+    })
+
 });
 
 // Display pastry create form on GET.

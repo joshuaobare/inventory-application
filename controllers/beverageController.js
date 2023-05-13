@@ -17,7 +17,20 @@ exports.beverage_list = asyncHandler(async (req, res, next) => {
 
 // Display detail page for a specific beverage.
 exports.beverage_detail = asyncHandler(async (req, res, next) => {
-  res.send(`NOT IMPLEMENTED: beverage detail: ${req.params.id}`);
+  
+    const beverage = await Beverages.findById(req.params.id).exec()
+
+    if (beverage === null){
+        const err = new Error("Beverage not found")
+        err.status = 404
+        return next(err)
+    }
+    
+    res.render("item_detail", {
+        product: beverage,
+        item: "Beverage"
+
+    })
 });
 
 // Display beverage create form on GET.

@@ -16,7 +16,20 @@ exports.vegetable_list = asyncHandler(async (req, res, next) => {
 
 // Display detail page for a specific vegetable.
 exports.vegetable_detail = asyncHandler(async (req, res, next) => {
-  res.send(`NOT IMPLEMENTED: vegetable detail: ${req.params.id}`);
+  
+    const veg = await Veg.findById(req.params.id)
+    if (veg === null){
+        const err = new Error("Vegetable not found")
+        err.status = 404
+        return next(err)
+    }
+    
+    res.render("item_detail", {
+        product: veg,
+        item: "Vegetable"
+
+    })
+    
 });
 
 // Display vegetable create form on GET.
