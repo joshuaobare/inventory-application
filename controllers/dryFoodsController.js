@@ -126,10 +126,70 @@ exports.dryFood_delete_post = asyncHandler(async (req, res, next) => {
 
 // Display dryFood update form on GET.
 exports.dryFood_update_get = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: dryFood update GET");
+    const dryFood = await DryFoods.findById(req.params.id).exec()
+    res.render("create_form", {title: "Create Dry Food", product: dryFood})
 });
 
 // Handle dryFood update on POST.
-exports.dryFood_update_post = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: dryFood update POST");
-});
+exports.dryFood_update_post = [
+  
+    body("name")
+    .trim()
+    .isLength({min:1})
+    .escape()
+    .withMessage("Name must be specified"),
+    
+    body("description")
+    .trim()
+    .isLength({min:1})
+    .escape()
+    .withMessage("Description must be specified"),
+    
+    body("category")
+    .trim()
+    .isLength({min:1})
+    .escape()
+    .withMessage("Category must be specified"),
+    
+    body("price")
+    .trim()
+    .isLength({min:1})
+    .escape()
+    .withMessage("Price must be specified")
+    .isNumeric()
+    .withMessage("Price has non-numeric characters"),
+
+    body("quantity")
+    .trim()
+    .isLength({min:1})
+    .escape()
+    .withMessage("Quantity must be specified")
+    .isNumeric()
+    .withMessage("Quantity has non-numeric characters"),
+
+
+    asyncHandler(async(req,res,next) => {
+        const errors = validationResult(req)
+
+        const dryFood = new DryFoods({
+            name: req.body.name,
+            description: req.body.description,
+            category: req.body.category,
+            price: req.body.price,
+            quantity: req.body.quantity,
+            _id: req.params.id
+
+        })
+
+        if(!errors.isEmpty()){
+            res.render("create_form", {
+                title: "Create Dry Food",
+                product: dryFood,
+                errors: errors.array()
+            })
+            return
+        } else {
+            const updatedProduct = await DryFoods.findByIdAndUpdate(req.params.id, dryFood, {})
+            res.redirect(updatedProduct.url)
+        }
+    })];

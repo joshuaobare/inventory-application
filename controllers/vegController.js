@@ -125,10 +125,70 @@ exports.vegetable_delete_post = asyncHandler(async (req, res, next) => {
 
 // Display vegetable update form on GET.
 exports.vegetable_update_get = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: vegetable update GET");
+    const veg = await Veg.findById(req.params.id)
+    res.render("create_form", {title: "Create Vegetable", product: veg})
 });
 
 // Handle vegetable update on POST.
-exports.vegetable_update_post = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: vegetable update POST");
-});
+exports.vegetable_update_post  = [
+  
+    body("name")
+    .trim()
+    .isLength({min:1})
+    .escape()
+    .withMessage("Name must be specified"),
+    
+    body("description")
+    .trim()
+    .isLength({min:1})
+    .escape()
+    .withMessage("Description must be specified"),
+    
+    body("category")
+    .trim()
+    .isLength({min:1})
+    .escape()
+    .withMessage("Category must be specified"),
+    
+    body("price")
+    .trim()
+    .isLength({min:1})
+    .escape()
+    .withMessage("Price must be specified")
+    .isNumeric()
+    .withMessage("Price has non-numeric characters"),
+
+    body("quantity")
+    .trim()
+    .isLength({min:1})
+    .escape()
+    .withMessage("Quantity must be specified")
+    .isNumeric()
+    .withMessage("Quantity has non-numeric characters"),
+
+
+    asyncHandler(async(req,res,next) => {
+        const errors = validationResult(req)
+
+        const vegetable = new Veg({
+            name: req.body.name,
+            description: req.body.description,
+            category: req.body.category,
+            price: req.body.price,
+            quantity: req.body.quantity,
+            _id: req.params.id
+        })
+
+        if(!errors.isEmpty()){
+            res.render("create_form", {
+                title: "Create Pastry",
+                product: vegetable,
+                errors: errors.array()
+            })
+            return
+        } else {
+            const updatedProduct = await Veg.findByIdAndUpdate(req.params.id, vegetable, {})
+            res.redirect(updatedProduct.url)
+        }
+    })];
+

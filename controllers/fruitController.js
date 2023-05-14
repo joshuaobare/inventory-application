@@ -126,10 +126,69 @@ exports.fruit_delete_post = asyncHandler(async (req, res, next) => {
 
 // Display fruit update form on GET.
 exports.fruit_update_get = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: fruit update GET");
+    const fruit = await Fruit.findById(req.params.id).exec()
+    res.render("create_form", {title: "Create Fruit", product: fruit})
 });
 
 // Handle fruit update on POST.
-exports.fruit_update_post = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: fruit update POST");
-});
+exports.fruit_update_post = [
+  
+    body("name")
+    .trim()
+    .isLength({min:1})
+    .escape()
+    .withMessage("Name must be specified"),
+    
+    body("description")
+    .trim()
+    .isLength({min:1})
+    .escape()
+    .withMessage("Description must be specified"),
+    
+    body("category")
+    .trim()
+    .isLength({min:1})
+    .escape()
+    .withMessage("Category must be specified"),
+    
+    body("price")
+    .trim()
+    .isLength({min:1})
+    .escape()
+    .withMessage("Price must be specified")
+    .isNumeric()
+    .withMessage("Price has non-numeric characters"),
+
+    body("quantity")
+    .trim()
+    .isLength({min:1})
+    .escape()
+    .withMessage("Quantity must be specified")
+    .isNumeric()
+    .withMessage("Quantity has non-numeric characters"),
+
+
+    asyncHandler(async(req,res,next) => {
+        const errors = validationResult(req)
+
+        const fruit = new Fruit({
+            name: req.body.name,
+            description: req.body.description,
+            category: req.body.category,
+            price: req.body.price,
+            quantity: req.body.quantity,
+            _id: req.params.id
+        })
+
+        if(!errors.isEmpty()){
+            res.render("create_form", {
+                title: "Create Fruit",
+                product: fruit,
+                errors: errors.array()
+            })
+            return
+        } else {
+            const updatedFruit = await Fruit.findByIdAndUpdate(req.params.id, fruit, {})
+            res.redirect(updatedFruit.url)
+        }
+    })];
