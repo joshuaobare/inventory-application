@@ -101,12 +101,27 @@ exports.fruit_create_post = [
 
 // Display fruit delete form on GET.
 exports.fruit_delete_get = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: fruit delete GET");
+  const fruit = await Fruit.findById(req.params.id).exec()
+
+    if (fruit===null){
+        res.redirect("/catalog/fruits")
+    }
+
+    res.render("product_delete", {
+        title:"Delete Fruit",
+        product: fruit,
+        item: "fruit"
+
+    })
+
 });
 
 // Handle fruit delete on POST.
 exports.fruit_delete_post = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: fruit delete POST");
+    await Fruit.findByIdAndRemove(req.params.id).exec()
+    
+    res.redirect("/catalog/fruits")
+
 });
 
 // Display fruit update form on GET.
