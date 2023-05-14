@@ -102,12 +102,25 @@ exports.vegetable_create_post = [
 
 // Display vegetable delete form on GET.
 exports.vegetable_delete_get = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: vegetable delete GET");
+    const vegetable = await Veg.findById(req.params.id).exec()
+
+    if (vegetable===null){
+        res.redirect("/catalog/vegetables")
+    }
+
+    res.render("product_delete", {
+        title:"Delete Vegetable",
+        product: vegetable,
+        item: "vegetable"
+
+    })
 });
 
 // Handle vegetable delete on POST.
 exports.vegetable_delete_post = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: vegetable delete POST");
+    await Veg.findByIdAndRemove(req.params.id).exec()
+    
+    res.redirect("/catalog/vegetables")
 });
 
 // Display vegetable update form on GET.

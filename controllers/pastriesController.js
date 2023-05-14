@@ -80,7 +80,7 @@ exports.pastry_create_post = [
     asyncHandler(async(req,res,next) => {
         const errors = validationResult(req)
 
-        const pastry = new Pastry({
+        const pastry = new Pastries({
             name: req.body.name,
             description: req.body.description,
             category: req.body.category,
@@ -103,12 +103,25 @@ exports.pastry_create_post = [
 
 // Display pastry delete form on GET.
 exports.pastry_delete_get = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: pastry delete GET");
+    const pastry = await Pastries.findById(req.params.id).exec()
+
+    if (pastry===null){
+        res.redirect("/catalog/pastries")
+    }
+
+    res.render("product_delete", {
+        title:"Delete Pastries",
+        product: pastry,
+        item: "pastry"
+
+    })
 });
 
 // Handle pastry delete on POST.
 exports.pastry_delete_post = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: pastry delete POST");
+    await Pastries.findByIdAndRemove(req.params.id).exec()
+    
+    res.redirect("/catalog/pastries")
 });
 
 // Display pastry update form on GET.

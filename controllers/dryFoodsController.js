@@ -103,12 +103,25 @@ exports.dryFood_create_post   = [
 
 // Display dryFood delete form on GET.
 exports.dryFood_delete_get = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: dryFood delete GET");
+    const dryFoods = await DryFoods.findById(req.params.id).exec()
+
+    if (dryFoods===null){
+        res.redirect("/catalog/dryFoods")
+    }
+
+    res.render("product_delete", {
+        title:"Delete Dry Food",
+        product: dryFoods,
+        item: "dry food"
+
+    })
 });
 
 // Handle dryFood delete on POST.
 exports.dryFood_delete_post = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: dryFood delete POST");
+    await DryFoods.findByIdAndRemove(req.params.id).exec()
+    
+    res.redirect("/catalog/dryFoods")
 });
 
 // Display dryFood update form on GET.

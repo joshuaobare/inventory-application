@@ -103,12 +103,25 @@ exports.beverage_create_post  = [
 
 // Display beverage delete form on GET.
 exports.beverage_delete_get = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: beverage delete GET");
+    const beverage = await Beverages.findById(req.params.id).exec()
+
+    if (beverage===null){
+        res.redirect("/catalog/beverages")
+    }
+
+    res.render("product_delete", {
+        title:"Delete Beverage",
+        product: beverage,
+        item: "beverage"
+
+    })
 });
 
 // Handle beverage delete on POST.
 exports.beverage_delete_post = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: beverage delete POST");
+    await Beverages.findByIdAndRemove(req.params.id).exec()
+    
+    res.redirect("/catalog/beverages")
 });
 
 // Display beverage update form on GET.
